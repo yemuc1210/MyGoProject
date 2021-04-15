@@ -41,6 +41,26 @@ func andromeda_distance() {
 	fmt.Printf("仙女座星系，光飞行需 %v 天\n", days)
 
 }
+
+func canisMajorDwarf_distance(){
+	//大犬座矮星系
+	//已知距离太阳之间的距离是236 000 000 000 000 000 km，转化为光年
+	lightSpeed := big.NewInt(299792)   //km/s
+	//secondPerYear := 60*60*24*365     //365 days   int类型，不等同于big.int
+	var c int64 = 60*60*24*365
+	secondPerYear := big.NewInt(c)
+
+	distance := new(big.Int)
+	distance.SetString("236000000000000000",10)
+
+	seconds := new(big.Int)
+	seconds.Div(distance,lightSpeed)
+
+	lightyears := new(big.Int)
+	lightyears.Div(seconds, secondPerYear)
+
+	fmt.Println("大犬座矮星系，光年",lightyears)
+}
 func main() {
 	fmt.Println("chapter 8 大数")
 	var bignum int64 = 41.3e12
@@ -59,4 +79,6 @@ func main() {
 	fmt.Println(reflect.TypeOf(f64)) //  float64 利用反射机制输出变量类型
 
 	andromeda_distance()
+
+	canisMajorDwarf_distance()
 }
